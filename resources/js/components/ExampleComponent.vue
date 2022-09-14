@@ -17,7 +17,16 @@
 <script>
     export default {
         mounted() {
-            console.log('Component mounted.')
+            Echo.join(`chat`)
+            .here((users) => {
+                console.log("hre:",users);
+            })
+            .joining((user) => {
+                console.log(`${user.name} joined`);
+            })
+            .leaving((user) => {
+                console.log(`${user.name} leaved`);
+            });
         }
     }
 </script>
